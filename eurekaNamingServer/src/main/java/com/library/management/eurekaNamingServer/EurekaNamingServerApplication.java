@@ -10,7 +10,6 @@ public class EurekaNamingServerApplication {
 
 	public static void main(String[] args) {
 
-		System.out.println("Eureka Starting..");
 		SpringApplication.run(EurekaNamingServerApplication.class, args);
 	}
 
