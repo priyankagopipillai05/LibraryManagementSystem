@@ -4,6 +4,7 @@ import com.library.management.bookRentingService.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
@@ -25,17 +26,22 @@ public class BookRentingService {
 
     Logger logger=LoggerFactory.getLogger(BookRentingService.class);
 
+    @Value("${librarymanagement.numberofdaystoreturnbook:7}")
+    int numberOfDays;
+
+    @Value("${librarymanagement.numberofbookrenewals:3}")
+    int noOfRenewals;
+
     public String doCheckOut(RentBookList rentBookList) {
 
         logger.info("Starting  BookRenting Service");
 
-        int numberOfDays = 7;
-        int noOfRenewals = 3;
+
 
         Date presentDate = new Date();
         Calendar cal = Calendar.getInstance();
         cal.setTime(presentDate);
-        cal.add(Calendar.DATE, 7);
+        cal.add(Calendar.DATE,numberOfDays);
         Date expectedReturnDate = cal.getTime();
 
         rentBookList.getCheckOutList().stream().forEach(s -> {
@@ -102,7 +108,7 @@ public class BookRentingService {
         Date currentDate = new Date();
         Calendar cal = Calendar.getInstance();
         cal.setTime(currentDate);
-        cal.add(Calendar.DATE, 7);
+        cal.add(Calendar.DATE,numberOfDays);
         Date newExpectedReturnDate = cal.getTime();
 
         Integer userID = rentBookList.getCheckOutList().get(0).getUserId();
