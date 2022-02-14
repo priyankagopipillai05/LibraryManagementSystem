@@ -11,7 +11,9 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 public class BookRentingServiceApplication {
 
+
 	public static void main(String[] args) {
+
 		SpringApplication.run(BookRentingServiceApplication.class, args);
 	}
 

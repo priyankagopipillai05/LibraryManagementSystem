@@ -2,6 +2,8 @@ package com.library.management.userRegistrationService.service;
 
 import com.library.management.userRegistrationService.model.UserList;
 import com.library.management.userRegistrationService.model.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -19,6 +21,7 @@ public class UserRegistrationService {
     @Autowired
     private RestTemplate restTemplate;
 
+    Logger logger= LoggerFactory.getLogger(UserRegistrationService.class);
     public UserList displayUser() {
         String url="http://databaseservice/dbservice/user";
 
@@ -30,6 +33,7 @@ public class UserRegistrationService {
 
     public Integer createUser(User user) {
 
+        logger.info("Create users here");
         String url="http://databaseservice/dbservice/user";
         HttpEntity<User> request=new HttpEntity<>(user);
 

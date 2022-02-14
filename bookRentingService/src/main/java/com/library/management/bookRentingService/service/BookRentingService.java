@@ -1,6 +1,8 @@
 package com.library.management.bookRentingService.service;
 
 import com.library.management.bookRentingService.model.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +23,11 @@ public class BookRentingService {
     @Autowired
     ReservedBookPickUpNotification reservedBookPickUpNotification;
 
+    Logger logger=LoggerFactory.getLogger(BookRentingService.class);
 
     public String doCheckOut(RentBookList rentBookList) {
+
+        logger.info("Starting  BookRenting Service");
 
         int numberOfDays = 7;
         int noOfRenewals = 3;
