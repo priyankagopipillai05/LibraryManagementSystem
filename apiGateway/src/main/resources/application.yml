@@ -1,0 +1,21 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: ApiGateway
+  cloud:
+    gateway:
+      routes:
+        - id: BookRentingService
+          uri: http://localhost:8500/
+          predicates:
+            - Path=/bookrenting/**
+        - id: BookManagementService
+          uri: http://localhost:9800/
+          predicates:
+            - Path=/bookreservationservice/**
+
+
+
+
